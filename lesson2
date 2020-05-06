@@ -1,0 +1,36 @@
+1. Включил в вм общий буфер.
+Добавил еще один network интерфейс - internal, но не заработал, сделал как вы сказали, через сетевой мост и оставил один адаптер сети.
+Все работает.
+
+2. Настроил ssh соединение с хостовой ОС на гостевую ОС с использованием ssh ключа.
+Использовал следующий команды:
+ssh 192.168.1.56
+ssh-keygen
+ssh winter@192.168.1.56 -i C:\Users\WINTER\Desktop\id_rsa
+
+3. Создал репозиторий в GitHub, настроил аутентификацию по ssh ключу.
+Локально создал отдельную ветку, добавил этот файл.
+Использовал следующий команды:
+cat ~/.ssh/id_rsa.pub
+git clone git@github.com:Barbossa1/LinuxHW.git
+cd LinuxHW/
+
+git checkout -b test
+git push
+git push --set-upstream origin test
+git add lesson1
+git commit -m 'leeson1'
+git config --global user.email "yakwinter@gmail.com"
+git config --global user.name "Winter"
+git commit -m 'leeson1'
+git push
+
+git checkout -b lesson2
+git push
+git push --set-upstream origin lesson2
+git add lesson2
+git commit -m 'leeson2'
+git config --global user.email "yakwinter@gmail.com"
+git config --global user.name "Winter"
+git commit -m 'leeson2'
+git push
