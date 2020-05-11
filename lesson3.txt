@@ -1,0 +1,62 @@
+Задание 1.
+Создал текстовый файл script1.
+#!/bin/bash
+mkdir -p tmp/lesson3/permissions - создать директорию;
+cd tmp/lesson3/permissions
+echo 'небольшое текстовое содержимое'>text1 - файл с небольшим текстом;
+cd
+ln -s ~/tmp/lesson3 tmp/lesson3/permissions - 1 файл с сылкой на предыдущий файл;
+ln -s ~/tmp tmp/lesson3/permissions - 2 файл с сыслкой на предыдущий файл;
+ln -s ~/tmp/lesson3/permissions/lesson3 tmp/lesson3 - файл с сылкой на ранее созданную ссылку;
+cd tmp/lesson3/permissions/lesson3
+ls -il - вывел на экран матаданные всех созданных файлов, включая их иноды;
+Символические ссылки используют различные номера инодов.
+Символическая ссылка содержит путь к оригинальному файлу, но не его содержимое.
+cd
+mv ~/tmp/lesson3/permissions/lesson3 tmp/link1 - перемещение ссылки из /tmp/lesson3/permissions в директорию /tmp;
+mv ~/tmp/lesson3/permissions/tmp tmp/link2 - перемещение ссылки из /tmp/lesson3/permissions в директорию /tmp;
+cd tmp
+ls -il
+Все ссылки работают.
+
+Задание 2.
+Заставил скрипт запускаться.
+chmod +x script1
+Содержимое скрипта:
+#!/bin/bash
+mkdir -p tmp/lesson3/permissions
+cd tmp/lesson3/permissions
+echo 'небольшое текстовое содержимое'>text1
+cd
+ln -s ~/tmp/lesson3 tmp/lesson3/permissions
+ln -s ~/tmp tmp/lesson3/permissions
+ln -s ~/tmp/lesson3/permissions/lesson3 tmp/lesson3
+cd tmp/lesson3/permissions/lesson3
+ls -il
+cd
+mv ~/tmp/lesson3/permissions/lesson3 tmp/link1
+mv ~/tmp/lesson3/permissions/tmp tmp/link2
+cd tmp
+ls -il
+Вывод скрипта:
+282152 lrwxrwxrwx 1 winter winter   44 мая  8 11:59 lesson3 -> /home/winter/tmp/lesson3/permissions/lesson3
+281870 drwxrwxr-x 2 winter winter 4096 мая  8 11:59 permissions
+281611 drwxrwxr-x 3 winter winter 4096 мая  8 11:59 lesson3
+282149 lrwxrwxrwx 1 winter winter   24 мая  8 11:59 link1 -> /home/winter/tmp/lesson3
+282151 lrwxrwxrwx 1 winter winter   16 мая  8 11:59 link2 -> /home/winter/tmp
+Команды для запуска:
+/home/winter/script1
+
+Задание 3.
+Есть достаточно много программ и файлов, которые должны принадлежать пользователю root,
+и в то же время – простые пользователи должны иметь возможность выполнять его.
+Например, утилита passwd, которая находится в каталоге /usr/bin/passwd и которая имеет дело с файлом /etc/passwd,
+редактировать который может только пользователь root.
+
+chmod
+	u+s - SUID
+ 	g+s - SGID
+	+t - Sticky bit
+
+Задание 4.
+Склонировал репозиторий в /opt/.
