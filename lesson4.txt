@@ -1,0 +1,50 @@
+Задание 1.
+sudo useradd -m rootWinter
+sudo passwd rootWinter
+sudo chmod 1777 rootWinter 
+sudo usermod -g sudo rootWinter
+
+Задание 2.
+sudo groupadd developer - создал группу developer;
+sudo useradd -m user1 - пользователи;
+sudo useradd -m user2
+sudo useradd -m user3 
+sudo usermod -g developer user1 - добавил их в группу;
+sudo usermod -g developer user2
+sudo usermod -g developer user3
+mkdir ourWork - директория для совместной работы;
+sudo chmod g+rw ourWork - созданные одними пользователями файлы могли изменять другие пользователи;
+sudo mkdir -p ~/ourWork/share - поддиректория для обмена файлами;
+sudo chmod g-rw,u+w ourWork/share - удалять файлы могли только их создатели;
+
+Задание 3.
+Во первый установил members, sudo apt-get  install members.
+
+sudo groupadd web
+sudo groupadd geekbrains
+Создал группы.
+
+echo $GID web
+echo $GID geekbrains
+Вывел их GID.
+
+sudo members web
+sudo members geekbrains
+Вывел всех пользователей, которые добавлены в эти группы.
+
+sudo useradd rockstar
+sudo usermod -u 143 rockstar
+Создал пользователя с фиксированным UID.
+
+sudo usermod -g web rockstar
+Группа web является основной.
+sudo usermod -aG geekbrains rockstar
+Группа geekbrains - второстепенной.
+
+if [[ $? == 0 ]] ; then
+    echo "success"
+else
+    echo "fail"
+fi
+
+Вывел "success".
