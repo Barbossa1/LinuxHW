@@ -1,0 +1,32 @@
+Задание 1.
+Сам так сказать скрипт.
+
+#!/bin/bash
+
+echo "Нужно созать текстовый файл main.txt в папке lesson6 и скопировать туда текст, который хотите изменить."
+
+for file in ~/lesson6/main.txt
+
+do
+
+sed -e 's/\(.*\)/\U\1/' $file > ~/lesson6/out.txt
+
+for file2 in ~/lesson6/out.txt
+
+do
+
+sed '/^$/d' $file2 > ~/lesson6/done.txt
+
+done
+done
+
+Хотел через if/then/else, но не получилось... Типа проверка на название файла и если нет, то выводить сообщение сверху.
+
+Задание 2.
+#!/bin/bash
+
+echo "После запуска выводит ошибки, если они есть. Нажмите ctrl+C для выхода."
+tail -f /var/log/auth.log | grep failure
+
+Задание 3.
+НЕ СМОГ ВЫПОЛНИТЬ
