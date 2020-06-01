@@ -1,0 +1,34 @@
+Задание 1.
+Написал Dockerfile для сборки образа:
+FROM python:alpine
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN pip3 install -Ur /tmp/requirements.txt
+
+RUN rm -rf /tmp/requirements.txt
+
+COPY manage.py /opt/manage.py
+
+COPY demo /opt/demo
+
+COPY polls /opt/polls
+
+CMD ["python", "/opt/manage.py"]
+
+Задание 2.
+Выдал ошибку, исправил следующей командой:
+python manage.py migrate
+
+Задание 3.
+Не смог выполнить, все перерыл...
+Время поджимало уже.
+
+Задание 4.
+Команды:
+docker login
+docker tag geekbrains:latest wintergb/geekbrains:latest
+docker push wintergb/geekbrains:latest
+
+Аккаунт на DockerHub:
+https://hub.docker.com/r/wintergb/geekbrains
